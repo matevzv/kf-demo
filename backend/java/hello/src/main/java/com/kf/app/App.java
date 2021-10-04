@@ -14,8 +14,10 @@ import com.sun.net.httpserver.HttpServer;
 public class App {
 
   public static void main(String[] args) throws Exception {
+    System.out.println("Listening on port 8000");
     HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-    server.createContext("/hello_java", new MyHandler());
+    server.createContext("/hello", new MyHandler());
+    server.createContext("/", new StaticFileHandler("frontend/kf/dist/kf/"));
     server.setExecutor(null);
     server.start();
   }
@@ -28,7 +30,7 @@ public class App {
             r = "{\"msg\": \"ni imena\"}";
         } else {
             String q = query[2];
-            r = "{\"msg\": \"Hello: " + q + "\"}";
+            r = "{\"msg\": \"Hello " + q + "\"}";
         }
         byte [] response = r.getBytes();
         t.sendResponseHeaders(200, response.length);
