@@ -1,0 +1,12 @@
+{
+  "name": "kf-demo",
+  "version": "0.0.1",
+  "author": "Matevz Vucnik <vucnikm@gmail.com>",
+  "description": "Demo aplikacija",
+  "scripts": {
+    "start": "node hello.js"
+  },
+  "dependencies": {
+    "express": "*"
+  }
+}
