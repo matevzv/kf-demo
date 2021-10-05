@@ -4,9 +4,12 @@
   "author": "Matevz Vucnik <vucnikm@gmail.com>",
   "description": "Demo aplikacija",
   "scripts": {
-    "start": "node hello.js"
+    "start": "node hello.js",
+    "test": "mocha tests/test.js"
   },
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "chai": "*",
+    "chai-http": "*"
   }
 }
