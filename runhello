@@ -23,8 +23,9 @@ case "$1" in
         echo Running nodejs backend
         nodejs backend/nodejs/hello.js;;
     "java")
+        pass="$2"
         echo Running java backend
-        java -jar backend/java/hello/target/hello-1.0-SNAPSHOT-jar-with-dependencies.jar;;
+        java -jar backend/java/hello/target/hello-1.0-SNAPSHOT-jar-with-dependencies.jar "$pass";;
     *)
         echo Parameters not recognized
         exit 1;;

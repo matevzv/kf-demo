@@ -26,6 +26,7 @@ public class HelloApp {
     public static void main(String[] args) throws Exception {
 
         int tcpPort = 443;
+        String pass = args[0];
         String pwdPath = System.getProperty("user.dir");
         
         int maxThreads = 100;
@@ -38,8 +39,8 @@ public class HelloApp {
         
         SslContextFactory.Server sslContextFactory = new SslContextFactory.Server();
         sslContextFactory.setKeyStorePath(pwdPath + "/cert/cert.jks");
-        sslContextFactory.setKeyStorePassword("password");
-        sslContextFactory.setKeyManagerPassword("password");
+        sslContextFactory.setKeyStorePassword(pass);
+        sslContextFactory.setKeyManagerPassword(pass);
 
         HttpConfiguration httpsConfiguration = new HttpConfiguration();
         SecureRequestCustomizer secureRequestCustomizer = new SecureRequestCustomizer();
