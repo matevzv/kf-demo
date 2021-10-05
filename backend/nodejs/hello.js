@@ -3,26 +3,27 @@ const fs = require('fs');
 const express = require('express');
 const path = require('path');
 
+const port = 443;
 const app = express();
 
 const options = {
-    cert: fs.readFileSync('./cert.pem'),
-    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('localhost.pem'),
+    key: fs.readFileSync('localhost-key.pem'),
 };
 
 app.get('/hello/:msg', function (req, res) {
     console.log(req.params.msg);
     req.params.msg = "Hello " + req.params.msg;
-    res.send(req.params).json();
+    res.setHeader("Content-Type", "application/json");
+    res.send(req.params);
 });
 
 app.get('/hello', function (req, res) {
-    res.send({msg: "ni imena"}).json();
+    res.setHeader("Content-Type", "application/json");
+    res.send({msg: "ni imena"});
 });
 
 app.use('/', express.static(path.join(__dirname, '../..', 'frontend/kf/dist/kf')));
-
-const port = 3000;
 
 https.createServer(options, app).listen(port, () => {
     console.log('Server listening on port ' + port);
