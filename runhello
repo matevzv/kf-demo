@@ -5,13 +5,14 @@ case "$1" in
         echo Rarameter missing
         exit 1;;
     "install")
+        pass="$2"
         mkdir cert
         wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O cert/mkcert
         chmod +x cert/mkcert
         cert/mkcert -install
         (cd cert; ./mkcert localhost)
-        (cd cert; cat localhost-key.pem localhost.pem | openssl pkcs12 -export -out cert.p12)
-        (cd cert; keytool -importkeystore -srckeystore cert.p12 -srcstoretype pkcs12 -destkeystore cert.jks)
+        (cd cert; cat localhost-key.pem localhost.pem | openssl pkcs12 -export -passout pass:"$pass" -out cert.p12)
+        (cd cert; keytool -noprompt -importkeystore --srcstorepass "$pass" -srckeystore cert.p12 -srcstoretype pkcs12 -deststorepass "$pass" -destkeystore cert.jks)
         echo "Instalation complete";;
     "build")
         (cd backend/java/hello; mvn install; mvn package)
@@ -25,7 +26,7 @@ case "$1" in
         echo Running java backend
         java -jar backend/java/hello/target/hello-1.0-SNAPSHOT-jar-with-dependencies.jar;;
     *)
-        echo Rarapeters not recognized
+        echo Parameters not recognized
         exit 1;;
 esac
 
