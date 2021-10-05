@@ -37,7 +37,7 @@ public class HelloApp {
         Server server = new Server(threadPool);
         
         SslContextFactory.Server sslContextFactory = new SslContextFactory.Server();
-        sslContextFactory.setKeyStorePath(pwdPath + "/backend/cert/cert.jks");
+        sslContextFactory.setKeyStorePath(pwdPath + "/cert/cert.jks");
         sslContextFactory.setKeyStorePassword("password");
         sslContextFactory.setKeyManagerPassword("password");
 
