@@ -37,7 +37,7 @@ describe('test home page operation', function() {
         chai.expect(err).to.be.null;
         chai.expect(res).to.have.status(200);
         chai.expect(res).to.be.json;
-        chai.expect(res.text).to.contain("Hello");
+        chai.expect(res.text).to.contain("Hello test");
         done();
     });
   });
