@@ -39,7 +39,7 @@ jobs:
           ./runhello install password
           ./runhello build
           sudo ./runhello nodejs &
-          sleep 10
+          sleep 5
 
       - name: Run tests
         run: |
