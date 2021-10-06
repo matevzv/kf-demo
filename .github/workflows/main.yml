@@ -38,10 +38,15 @@ jobs:
           cd $GITHUB_WORKSPACE
           ./runhello install password
           ./runhello build
-          sudo ./runhello nodejs &
-          sleep 5
 
       - name: Run tests
         run: |
-          cd $GITHUB_WORKSPACE/backend/nodejs
-          npm test
+          cd $GITHUB_WORKSPACE
+          sudo ./runhello java password &
+          sleep 5
+          mocha backend/nodejs/tests/test.js
+          sudo pkill java
+          sudo ./runhello nodejs &
+          sleep 5
+          mocha backend/nodejs/tests/test.js
+          
