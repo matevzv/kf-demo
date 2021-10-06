@@ -49,4 +49,3 @@ jobs:
           sudo ./runhello nodejs &
           sleep 5
           mocha backend/nodejs/tests/test.js
-          
