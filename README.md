@@ -16,7 +16,7 @@
 ### 2. Build the system
     $ ./runhello build
 
-### 3. Run nodejs or java backend on port 443
+### 3. Run nodejs or java backend on port 443 (requires root)
     $ ./runhello nodejs
     $ ./runhello java password
 
